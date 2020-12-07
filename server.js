@@ -18,7 +18,7 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({extended: true})) //estas dos lineas son importantes para que las peticiones post se hagan en el formato correcto
 
-/*app.use(express.static(path.join(__dirname, 'frontend/build')))*/
+app.use(express.static(path.join(__dirname, 'frontend/build')))
 
 mongoose.connect('mongodb+srv://amazonaclient:xuN2sracac8qpoIL@cluster0.cou6k.mongodb.net/test' /*|| 'mongodb://localhost/aldonza'*/, {
     useNewUrlParser: true, 
