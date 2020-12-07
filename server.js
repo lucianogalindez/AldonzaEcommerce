@@ -20,7 +20,7 @@ app.use(express.urlencoded({extended: true})) //estas dos lineas son importantes
 
 /*app.use(express.static(path.join(__dirname, 'frontend/build')))*/
 
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/aldonza', {
+mongoose.connect(process.env.MONGODB_URL /*|| 'mongodb://localhost/aldonza'*/, {
     useNewUrlParser: true, 
     useUnifiedTopology: true,
     useCreateIndex: true
