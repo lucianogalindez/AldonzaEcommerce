@@ -10,7 +10,6 @@ import bodyParser from 'body-parser'
 import path from 'path'
 
 const __dirname = path.resolve();
-console.log(__dirname)
 
 dotenv.config(); //necesario
 
@@ -19,7 +18,7 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({extended: true})) //estas dos lineas son importantes para que las peticiones post se hagan en el formato correcto
 
-//app.use(express.static('../frontend/build'))
+app.use(express.static(path.join(__dirname, 'frontend/build')))
 
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/aldonza', {
     useNewUrlParser: true, 

@@ -1,4 +1,6 @@
-import {BrowserRouter, Link} from 'react-router-dom'
+import {BrowserRouter, Link, Route} from 'react-router-dom'
+import HomeScreen from './Screens/HomeScreen'
+import ProductScreen from './Screens/ProductScreen';
 
 function App() {
   return (
@@ -11,10 +13,17 @@ function App() {
             </Link>
         </div>
         <div>
-            <Link to="/cart">Cart</Link>
-            <Link to="/signin">Sign In</Link>
+            <Link to="/cart">Carrito</Link>
+            <Link to="/signin">Ingresa</Link>
         </div>
     </header>
+    <main>
+      <Route path='/product/:id' component={ProductScreen}></Route>
+      <Route path='/' component={HomeScreen} exact></Route>
+    </main>
+    <footer className='row center'>
+      All Right Reserver
+    </footer>
     </div>
     </BrowserRouter>
   );
