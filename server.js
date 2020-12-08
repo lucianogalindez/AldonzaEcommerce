@@ -38,6 +38,10 @@ app.get('/cart', (req,res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
 })
 
+app.get('/signin', (req,res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
+})
+
 app.use('/api/users', userRouter);
 
 app.use('/api/products', productRouter);
