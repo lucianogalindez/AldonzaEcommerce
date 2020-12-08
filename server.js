@@ -34,9 +34,9 @@ app.get('/', (req, res) => {
     res.send('server is ready')
 });
 
-/*app.get('*', (req,res) => {
+app.get('/cart', (req,res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
-})*/
+})
 
 app.use('/api/users', userRouter);
 

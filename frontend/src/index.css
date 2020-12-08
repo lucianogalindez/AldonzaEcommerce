@@ -310,6 +310,7 @@ img.large {
   border-radius: 0.5rem;
   transform: translateY(0);
   transition: all 0.3s ease-out;
+  overflow-y: scroll;
 }
 
 .Menu > a > .menuOptions {
