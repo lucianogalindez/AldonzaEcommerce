@@ -30,7 +30,10 @@ body {
 
 header {
   grid-area: header;
-  background-color: #203040;
+  background-color: #00421b;
+  width: 100%;
+  position: fixed;
+  height: 5rem;
 }
 
 main {
@@ -40,7 +43,7 @@ main {
 
 footer {
   grid-area: footer;
-  background-color: #203040;
+  background-color: #00421b;
   color: #ffffff;
 }
 /* Common */
@@ -71,10 +74,15 @@ header a {
 
 div.brand {
   color: white;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  font-family: 'Sansita Swashed';
+  font-family: 'Sansita Swashed', cursive;
   margin-bottom: 0.5rem;
+}
+
+div.info {
+  display: flex;
+  justify-content: flex-start;
 }
 
 .brand > a:hover{
@@ -126,7 +134,7 @@ button:hover {
 }
 
 button.primary {
-  background-color: #f0c040;
+  background-color: #54ac45;
 }
 
 button.block {
@@ -267,27 +275,58 @@ img.large {
   margin: 1rem 0;
 }
 
-/* Dropdown */
-.dropdown {
-  display: inline-block;
-  position: relative;
-}
+/* Menu */
 
-.dropdown-content {
+.hiddenMenu {
   position: absolute;
-  display: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   right: 0;
-  min-width: 12rem;
-  padding: 1rem;
-  z-index: 1;
-  background-color: #203040;
+  top: 4.7rem;
+  width: 100%;
+  text-align: center;
+  z-index: -2;
+  background-color: #b6e6c2;
   margin: 0;
-  margin-top: 0.4rem;
   border-radius: 0.5rem;
+  transform: translateY(0);
+  opacity: 0%;
+  transition: all 0.6s ease-in;
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
+.Menu {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  right: 0;
+  top: 4.7rem;
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+  background-color: #b6e6c2;
+  margin: 0;
+  border-radius: 0.5rem;
+  transform: translateY(0);
+  transition: all 0.3s ease-out;
+}
+
+.Menu > a > .menuOptions {
+  cursor: pointer;
+  padding: 4rem;
+  transition: all 0.2s ease-in;
+  font-weight: bold;
+  color: black;
+}
+
+.hiddenMenu > a {
+  display: none;
+}
+
+
+.menuOptions:hover {
+  background-color: #324138;
 }
 
 /* Checkout Steps */
