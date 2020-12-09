@@ -30,7 +30,7 @@ export default function OrderScreen(props) {
             console.log(data)
             const script = document.createElement('script');
             script.type='text/javascript';
-            script.src=`https://www.paypal.com/sdk/js?client-id=${data}`
+            script.src=`https://www.paypal.com/sdk/js?client-id=AeUjidfP6GYLM21W9WTAFbSCRvEXj1yCFQrn2uEjxVv9A8QcErLSadwqXOZJs5HiH_MoBOoGhlneVPMe`
             script.async=true
             script.onload = () => {
                 setSdkReady(true)
