@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
 import {PayPalButton} from 'react-paypal-button-v2'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
 import { detailsOrder, payOrder } from '../Actions/orderActions';
+import LoadingBox from "../Components/LoadingBox";
+import MessageBox from '../Components/MessageBox'
 import { ORDER_PAY_RESET } from '../Constants/orderConstants';
 import axios from '../axios'
-import MessageBox from '../Components/MessageBox';
-import LoadingBox from '../Components/LoadingBox';
-import { Link } from 'react-router-dom';
 
 export default function OrderScreen(props) {
-
+    
     const orderId = props.match.params.id;
     const [sdkReady, setSdkReady] = useState(false)
     const [data, setData] = useState('')
@@ -30,7 +30,7 @@ export default function OrderScreen(props) {
             console.log(data)
             const script = document.createElement('script');
             script.type='text/javascript';
-            script.src=`https://www.paypal.com/sdk/js?client-id=AeUjidfP6GYLM21W9WTAFbSCRvEXj1yCFQrn2uEjxVv9A8QcErLSadwqXOZJs5HiH_MoBOoGhlneVPMe`
+            script.src=`https://www.paypal.com/sdk/js?client-id=${data}`
             script.async=true
             script.onload = () => {
                 setSdkReady(true)
@@ -56,7 +56,7 @@ export default function OrderScreen(props) {
     const successPaymentHandler = (paymentResult) => {
         dispatch(payOrder(order, paymentResult))
     }
-
+    
     return loading 
     ? (<LoadingBox/>)
     : error 
