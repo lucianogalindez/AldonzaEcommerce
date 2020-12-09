@@ -34,6 +34,8 @@ app.get('/', (req, res) => {
     res.send('server is ready')
 });
 
+// DIRECCIONES ESTATICAS
+
 app.get('/product/:id', (req,res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
 })
@@ -49,6 +51,37 @@ app.get('/cart/:id?', (req,res) => {
 app.get('/signin', (req,res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
 })
+
+app.get('/register', (req,res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
+})
+
+app.get('/payment', (req,res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
+})
+
+app.get('/shipping', (req,res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
+})
+
+app.get('/payment', (req,res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
+})
+
+app.get('/placeorder', (req,res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
+})
+
+app.get('/order/:id', (req,res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
+})
+
+app.get('/orderhistory', (req,res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
+})
+
+
+// DIRECCIONES API 
 
 app.use('/api/users', userRouter);
 

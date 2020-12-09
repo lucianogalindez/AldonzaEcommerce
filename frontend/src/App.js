@@ -5,6 +5,10 @@ import { emptyCart, emptyShippingAddress } from './Actions/cartActions';
 import { signout } from './Actions/userActions';
 import CartScreen from './Screens/CartScreen';
 import HomeScreen from './Screens/HomeScreen'
+import OrderHistoryScreen from './Screens/OrderHistoryScreen';
+import OrderScreen from './Screens/OrderScreen';
+import PaymentMethodScreen from './Screens/PaymentMethodScreen';
+import PlaceOrderScreen from './Screens/PlaceOrderScreen';
 import ProductScreen from './Screens/ProductScreen';
 import RegisterScreen from './Screens/RegisterScreen';
 import ShippingAddressScreen from './Screens/ShippingAddressScreen';
@@ -79,13 +83,13 @@ function App() {
                   Salir
                 </div>
               </Link>
-              <Link to='#'>
+              <Link to='/orderhistory' onClick={handlerMenu}>
                 <div className='menuOptions'>
                   Historial de ordenes
                 </div>
               </Link>
               <Link to='#'>
-                <div className='menuOptions'>
+                <div className='menuOptions' onClick={handlerMenu}>
                   Perfil
                 </div>
               </Link>
@@ -98,6 +102,10 @@ function App() {
       <Route path='/signin' component={SigninScreen}></Route>
       <Route path='/register' component={RegisterScreen}></Route>
       <Route path='/shipping' component={ShippingAddressScreen}></Route>
+      <Route path='/payment' component={PaymentMethodScreen}></Route>
+      <Route path='/placeorder' component={PlaceOrderScreen}></Route>
+      <Route path='/order/:id' component={OrderScreen}></Route>
+      <Route path='/orderhistory' component={OrderHistoryScreen}></Route>
       <Route path='/' component={HomeScreen} exact></Route>
     </main>
     <footer className='row center'>
