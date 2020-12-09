@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node --experimental-modules server.js",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+    "heroku-postbuild": "cd frontend && npm install --legacy-peer-deps && npm run build"
   },
   "author": "Luciano Galindez",
   "license": "ISC",
@@ -23,8 +23,7 @@
     "jsonwebtoken": "^8.5.1",
     "mercadopago": "^1.5.1",
     "mongoose": "^5.11.4",
-    "path": "^0.12.7",
-    "react-paypal-button-v2": "^2.6.2"
+    "path": "^0.12.7"
   },
   "devDependencies": {
     "eslint": "^7.15.0",
