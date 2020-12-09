@@ -34,7 +34,15 @@ app.get('/', (req, res) => {
     res.send('server is ready')
 });
 
-app.get('/cart', (req,res) => {
+app.get('/product/:id', (req,res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
+})
+
+app.get('/register', (req,res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
+})
+
+app.get('/cart/:id?', (req,res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
 })
 
