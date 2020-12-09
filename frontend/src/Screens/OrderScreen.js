@@ -9,6 +9,7 @@ import { ORDER_PAY_RESET } from '../Constants/orderConstants';
 import axios from '../axios'
 
 export default function OrderScreen(props) {
+
     
     const orderId = props.match.params.id;
     const [sdkReady, setSdkReady] = useState(false)
@@ -27,7 +28,6 @@ export default function OrderScreen(props) {
                 .then(response => {
                     setData(response.data)
                 })
-            console.log(data)
             const script = document.createElement('script');
             script.type='text/javascript';
             script.src=`https://www.paypal.com/sdk/js?client-id=${data}`
