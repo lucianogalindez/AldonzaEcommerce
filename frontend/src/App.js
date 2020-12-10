@@ -21,6 +21,9 @@ function App() {
   const cart = useSelector(state => state.cart)
   const { cartItems } = cart;
 
+  const headerBG = useSelector(state => state.headerBG)
+  const { headerBg } = headerBG
+
   const userSignin = useSelector(state => state.userSignin)
   const { userInfo } = userSignin;
 
@@ -45,12 +48,12 @@ function App() {
     if(!userInfo) {
       setMenu(false)
     }
-  }, [userInfo])
+  }, [userInfo, dispatch])
 
   return (
     <BrowserRouter>
     <div className="grid-container">
-    <header className="row">
+    <header className={ headerBg ? 'row header' : 'row headerNoBg'}>
         <div className='brand'>
             <Link to='/'>
                 Aldonza

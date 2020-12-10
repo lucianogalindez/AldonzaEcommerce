@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { headerBgOn } from '../Actions/headerActions';
 import { detailsProducts } from '../Actions/productActions';
 import LoadingBox from '../Components/LoadingBox';
 import MessageBox from '../Components/MessageBox';
@@ -16,6 +17,7 @@ export default function ProductScreen(props) {
 
     useEffect (() => {
         dispatch(detailsProducts(productId))
+        dispatch(headerBgOn())
     }, [dispatch, productId])
     
     const addToCartHandle = () => {
@@ -29,7 +31,7 @@ export default function ProductScreen(props) {
         ) : error ? (
             <MessageBox variant="danger">{error}</MessageBox>
         ) : (
-            <div>
+            <div style={{padding: '1rem'}}>
             <Link to="/">Back to result</Link>
             <div className="row top">
                 <div className="col-2">

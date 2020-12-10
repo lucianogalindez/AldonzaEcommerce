@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { addToCart, removeFromCart } from '../Actions/cartActions';
+import { headerBgOn } from '../Actions/headerActions';
 import MessageBox from '../Components/MessageBox';
 
 export default function CartScreen(props) {
@@ -18,6 +19,7 @@ export default function CartScreen(props) {
         if(productId) {
             dispatch(addToCart(productId, qty))
         }
+        dispatch(headerBgOn())
     }, [dispatch, productId, qty])
 
     const removeFromCartHandler = (id) => {
@@ -30,7 +32,7 @@ export default function CartScreen(props) {
 
 
     return (
-        <div className='row center top'>
+        <div className='row center top' style={{padding: '1rem'}}>
             <div className='col-2'>
                 <h1>Shopping Cart</h1>
                 {

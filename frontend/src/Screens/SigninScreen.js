@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { headerBgOn } from '../Actions/headerActions'
 import { signin } from '../Actions/userActions'
 import LoadingBox from '../Components/LoadingBox'
 import MessageBox from '../Components/MessageBox'
@@ -27,10 +28,11 @@ export default function SigninScreen(props) {
         if(userInfo) {
             props.history.push(redirect);
         }
-    }, [userInfo, props.history, redirect])
+        dispatch(headerBgOn())
+    }, [dispatch, userInfo, props.history, redirect])
 
     return (
-        <div>
+        <div style={{padding: '1rem'}}>
             <form className='form' onSubmit={submitHandler}>
                 <div>
                     <h1>Ingresar</h1>

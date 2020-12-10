@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { savePaymentMethod } from '../Actions/cartActions'
+import { headerBgOn } from '../Actions/headerActions'
 import CheckoutSteps from '../Components/CheckoutSteps'
 
 export default function PaymentMethodScreen(props) {
@@ -21,8 +22,12 @@ export default function PaymentMethodScreen(props) {
         props.history.push('/placeorder')
     }
 
+    useEffect(() => {
+        dispatch(headerBgOn())
+    }, [dispatch])
+
     return (
-        <div>
+        <div style={{padding: '1rem'}}>
             <CheckoutSteps step1 step2 step3 />
             <form className='form' onSubmit={submitHandler}>
                 <div>

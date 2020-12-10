@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { headerBgOn } from '../Actions/headerActions'
 import { listOrderMine } from '../Actions/orderActions'
 import LoadingBox from '../Components/LoadingBox'
 import MessageBox from '../Components/MessageBox'
@@ -13,10 +14,11 @@ export default function OrderHistoryScreen(props) {
 
     useEffect(() => {
         dispatch(listOrderMine())
+        dispatch(headerBgOn())
     }, [dispatch])
 
     return (
-        <div>
+        <div style={{padding: '1rem'}}>
             <h1>Order History</h1>
             {loading ? <LoadingBox />
             : error? <MessageBox variant='danger'>{error}</MessageBox>

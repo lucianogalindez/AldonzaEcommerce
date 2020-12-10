@@ -28,7 +28,7 @@ body {
   height: 100%;
 }
 
-header {
+.header {
   grid-area: header;
   background-color: #00421b;
   width: 100%;
@@ -36,9 +36,17 @@ header {
   height: 5rem;
 }
 
+.headerNoBg {
+  grid-area: header;
+  background-color: transparent;
+  width: 100%;
+  position: fixed;
+  height: 5rem;
+}
+
 main {
   grid-area: main;
-  padding: 1rem;
+  /*padding: 1rem;*/
 }
 
 footer {
@@ -172,6 +180,25 @@ button.small {
   min-width: 30rem;
 }
 
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  color: white;
+  font-family: 'Sansita Swashed', cursive;
+}
+
+.titleBrand {
+  font-size: 6rem;
+}
+
+.titleDescription {
+margin-top: 1rem;
+font-size: 2rem; 
+}
+
 /* Images */
 
 img {
@@ -287,7 +314,7 @@ img.large {
   width: 100%;
   text-align: center;
   z-index: -2;
-  background-color: #b6e6c2;
+  background-color: #e7e7e7;
   margin: 0;
   border-radius: 0.5rem;
   opacity: 0%;
@@ -306,7 +333,7 @@ img.large {
   width: 100%;
   text-align: center;
   z-index: 1;
-  background-color: #b6e6c2;
+  background-color: #e7e7e7;
   margin: 0;
   border-radius: 0.5rem;
   transition: all 0.6s ease-out;
@@ -369,4 +396,16 @@ img.large {
 
 .table button {
   margin: 0 0.2rem;
+}
+
+/* Banner */
+
+.bgImage {
+  background-image: url('./images/bannerbg.jpg');
+  height: 100vh;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+  padding: -1rem;
+  margin-top: -50px;
 }

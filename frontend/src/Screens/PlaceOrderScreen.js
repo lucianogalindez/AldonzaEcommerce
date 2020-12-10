@@ -6,6 +6,7 @@ import CheckoutSteps from '../Components/CheckoutSteps';
 import { Link } from 'react-router-dom';
 import LoadingBox from '../Components/LoadingBox';
 import MessageBox from '../Components/MessageBox';
+import { headerBgOn } from '../Actions/headerActions';
 
 export default function PlaceOrderScreen(props) {
 
@@ -40,11 +41,12 @@ export default function PlaceOrderScreen(props) {
             props.history.push(`/order/${order._id}`);
             dispatch({type: ORDER_CREATE_RESET})
         }
+        dispatch(headerBgOn())
     }, [success, dispatch, order, props.history])
     
 
     return (
-        <div>
+        <div style={{padding: '1rem'}}>
             <CheckoutSteps step1 step2 step3 step4/>
             <div className='row top'>
                 <div className='col-2'>

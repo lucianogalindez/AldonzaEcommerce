@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { saveShippingAddress } from '../Actions/cartActions'
+import { headerBgOn } from '../Actions/headerActions'
 import CheckoutSteps from '../Components/CheckoutSteps'
 
 export default function ShippingAddressScreen(props) {
@@ -32,8 +33,12 @@ export default function ShippingAddressScreen(props) {
         
     }
 
+    useEffect(() => {
+        dispatch(headerBgOn())
+    }, [dispatch])
+
     return (
-        <div>
+        <div style={{padding: '1rem'}}>
             <CheckoutSteps step1 step2 />
             <form className='form' onSubmit={submitHandler}>
                 <div>

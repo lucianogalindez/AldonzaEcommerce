@@ -7,6 +7,7 @@ import LoadingBox from "../Components/LoadingBox";
 import MessageBox from '../Components/MessageBox'
 import { ORDER_PAY_RESET } from '../Constants/orderConstants';
 import axios from '../axios'
+import { headerBgOn } from '../Actions/headerActions';
 
 export default function OrderScreen(props) {
 
@@ -51,6 +52,8 @@ export default function OrderScreen(props) {
             }
         }
 
+        dispatch(headerBgOn())
+
     }, [dispatch, orderId, order, sdkReady, data, successPay])
 
     const successPaymentHandler = (paymentResult) => {
@@ -62,7 +65,7 @@ export default function OrderScreen(props) {
     : error 
     ? (<MessageBox variant='danger'>{error}</MessageBox>)
     : (
-        <div>
+        <div style={{padding: '1rem'}}>
             <div>Order {order._id}</div>
             <div className='row top'>
                 <div className='col-2'>
