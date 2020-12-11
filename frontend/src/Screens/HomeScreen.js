@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { headerBg } from '../Actions/headerActions';
+import { headerBg, headerBgOn } from '../Actions/headerActions';
 import { listProducts } from '../Actions/productActions';
 import Banner from '../Components/Banner';
 import LoadingBox from '../Components/LoadingBox';
@@ -10,6 +10,7 @@ import Product from '../Components/Product';
 
 export default function HomeScreen() {
 
+    const [header, setHeader] = useState(false)
     const productList = useSelector(state => state.productList)
     const { loading, error, products } = productList
     const dispatch = useDispatch()
@@ -22,14 +23,28 @@ export default function HomeScreen() {
     useEffect(() => {
         if(!loading) {
             if (!error) {
-                dispatch(headerBg())
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 200) {
+                        setHeader(true)
+                    } else {
+                        setHeader(false)
+                    }
+                })
             }
-        }
+        }   
     }, [dispatch, loading, error])
+
+    useEffect(() => {
+        if (header) {
+            dispatch(headerBgOn())
+        } else {
+            dispatch(headerBg())
+        }
+    }, [header, dispatch])
 
     return (
         <div>
-            {loading ? <LoadingBox />
+            {loading ? <><br/><LoadingBox/></> 
             : error ? <MessageBox variant='danger'>{error}</MessageBox>
             : 
             (

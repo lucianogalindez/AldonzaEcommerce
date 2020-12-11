@@ -112,7 +112,7 @@ function App() {
       <Route path='/' component={HomeScreen} exact></Route>
     </main>
     <footer className='row center'>
-      Alzonda Local Comercial - San Martin 667
+      Aldonza Local Comercial - San Martin 667
     </footer>
     </div>
     </BrowserRouter>

@@ -30,18 +30,27 @@ body {
 
 .header {
   grid-area: header;
-  background-color: #00421b;
+  background-color: #1f201fbb;
   width: 100%;
   position: fixed;
   height: 5rem;
+  transition: all 0.3s ease-in;
+  z-index: 1;
+}
+
+.header > div.brand {
+  transform: scale(1.1);
+  transition: all 0.2s ease-in;
 }
 
 .headerNoBg {
   grid-area: header;
-  background-color: transparent;
+  background-color: gerba;
   width: 100%;
   position: fixed;
   height: 5rem;
+  transition: all 0.3s ease-in;
+  z-index: 1;
 }
 
 main {
@@ -51,7 +60,7 @@ main {
 
 footer {
   grid-area: footer;
-  background-color: #00421b;
+  background-color: #1f201fbb;
   color: #ffffff;
 }
 /* Common */
@@ -142,7 +151,7 @@ button:hover {
 }
 
 button.primary {
-  background-color: #54ac45;
+  background-color: #ebb25d;
 }
 
 button.block {
@@ -185,18 +194,20 @@ button.small {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 90%;
+  height: 80%;
   color: white;
   font-family: 'Sansita Swashed', cursive;
 }
 
 .titleBrand {
   font-size: 6rem;
+  font-weight: bold;
 }
 
 .titleDescription {
 margin-top: 1rem;
 font-size: 2rem; 
+font-weight: bold;
 }
 
 /* Images */
@@ -311,7 +322,7 @@ img.large {
   justify-content: space-around;
   right: 0;
   top: 4.7rem;
-  width: 100%;
+  width: 50%;
   text-align: center;
   z-index: -2;
   background-color: #e7e7e7;
@@ -329,8 +340,8 @@ img.large {
   flex-direction: column;
   justify-content: space-around;
   right: 0;
-  top: 4.7rem;
-  width: 100%;
+  top: 5rem;
+  width: 50%;
   text-align: center;
   z-index: 1;
   background-color: #e7e7e7;
@@ -406,6 +417,8 @@ img.large {
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
-  padding: -1rem;
+  -webkit-mask-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+  mask-image: linear-gradient(to bottom, rgb(0, 0, 0), rgba(0, 0, 0, 0.32));
   margin-top: -50px;
+  z-index: -10;
 }
