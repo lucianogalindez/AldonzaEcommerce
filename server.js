@@ -80,6 +80,10 @@ app.get('/orderhistory', (req,res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
 })
 
+app.get('/order/mercadopago/:id/:status?', (req,res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
+})
+
 
 // DIRECCIONES API 
 
