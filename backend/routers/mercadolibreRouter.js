@@ -9,7 +9,7 @@ mercadopago.configure({
 const mercadolibreRouter = express.Router()
 
 mercadolibreRouter.post('/', expressAsyncHandler(async(req, res) => {
-    const baseURL = 'https://aldonza.herokuapp.com/'
+    const baseURL = 'https://aldonza.herokuapp.com'
     let preference = {
         items: [
             { 
