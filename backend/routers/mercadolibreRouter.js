@@ -9,7 +9,7 @@ mercadopago.configure({
 const mercadolibreRouter = express.Router()
 
 mercadolibreRouter.post('/', expressAsyncHandler(async(req, res) => {
-    const baseURL = 'http://localhost:3000'
+    const baseURL = 'https://aldonza.herokuapp.com/'
     let preference = {
         items: [
             { 
