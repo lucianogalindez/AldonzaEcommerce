@@ -28,6 +28,7 @@ export const isAuth = (req, res, next) => {
     const authorization = req.headers.authorization;
     if(authorization) {
         const token = authorization.slice(7, authorization.length); // Bearer XXXXX => con esta funcion solo me quedo con el codigo, es decir con XXXXX
+
         jwt.verify(token, process.env.JWT_SECRET || 'somethingsecret', (err, decode) => {
             if (err) {
                 res.status(401).send({
@@ -36,6 +37,7 @@ export const isAuth = (req, res, next) => {
             } else {
                 req.user = decode; //devuelve la informacion del usuario
                 next() //con next pasamos al usuario como propiedad para el siguiente paso
+
             }
         }) //lo encripta
     } else {

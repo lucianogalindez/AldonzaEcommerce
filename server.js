@@ -87,7 +87,7 @@ app.use('/api/users', userRouter);
 
 app.use('/api/products', productRouter);
 
-app.use('/api/mercadolibre', mercadolibreRouter)
+app.use('/api/mercadopago', mercadolibreRouter)
 
 app.use('/api/orders', orderRouter)
 

@@ -13,6 +13,7 @@ import ProductScreen from './Screens/ProductScreen';
 import RegisterScreen from './Screens/RegisterScreen';
 import ShippingAddressScreen from './Screens/ShippingAddressScreen';
 import SigninScreen from './Screens/SigninScreen';
+import OrderScreenMP from './Screens/OrderScreenMP'
 
 function App() {
 
@@ -107,7 +108,8 @@ function App() {
       <Route path='/shipping' component={ShippingAddressScreen}></Route>
       <Route path='/payment' component={PaymentMethodScreen}></Route>
       <Route path='/placeorder' component={PlaceOrderScreen}></Route>
-      <Route path='/order/:id' component={OrderScreen}></Route>
+      <Route path='/order/paypal/:id' component={OrderScreen}></Route>
+      <Route path='/order/mercadopago/:id/:status?' component={OrderScreenMP}></Route>
       <Route path='/orderhistory' component={OrderHistoryScreen}></Route>
       <Route path='/' component={HomeScreen} exact></Route>
     </main>
