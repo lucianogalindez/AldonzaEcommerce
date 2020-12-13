@@ -21,7 +21,7 @@ mercadolibreRouter.post('/', expressAsyncHandler(async(req, res) => {
         ],
         back_urls: {
             success: `${baseURL}/order/mercadopago/${req.body.orderId}/success`,
-            /*pending: `${baseURL}/order/mercadopago/${req.body.orderId}/pending`*/
+            pending: `https://aldonza.herokuapp.com/order/mercadopago/${req.body.orderId}/pending`,
             pending: 'google.com'
         },
         auto_return: 'approved'
