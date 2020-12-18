@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { detailsOrder, payOrder, pendingOrder } from '../Actions/orderActions';
+import { detailsOrder, /*payOrder,*/ pendingOrder } from '../Actions/orderActions';
 import LoadingBox from "../Components/LoadingBox";
 import MessageBox from '../Components/MessageBox'
 import { ORDER_PAY_RESET } from '../Constants/orderConstants';
@@ -22,11 +22,11 @@ export default function OrderScreenMP(props) {
 
     /*Si la orden se ha pagado*/
     const orderPay = useSelector(state => state.orderPay)
-    const {loading: loadingPay, error: errorPay, success: successPay} = orderPay
+    const {loading: loadingPay, error: errorPay/*, success: successPay*/} = orderPay
 
     /*Si la orden se encuentra con pago pendiente*/
     const orderPayPending = useSelector(state => state.orderPayPending)
-    const {loading: loadingPayPending, error: errorPayPending, success: successPayPending} = orderPayPending
+    const {loading: loadingPayPending, error: errorPayPending} = orderPayPending
 
     const addMercadoPagoScript = async () => {
         await axios.post('/api/mercadopago', {name: 'Productos Aldonza', price: order.totalPrice, qty: 1, orderId: orderId})

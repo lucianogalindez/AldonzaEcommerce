@@ -14,6 +14,8 @@ import RegisterScreen from './Screens/RegisterScreen';
 import ShippingAddressScreen from './Screens/ShippingAddressScreen';
 import SigninScreen from './Screens/SigninScreen';
 import OrderScreenMP from './Screens/OrderScreenMP'
+import ProfileScreen from './Screens/ProfileScreen';
+import PrivateRoute from './Components/PrivateRoute';
 
 function App() {
 
@@ -37,7 +39,7 @@ function App() {
   }
 
   const handlerMenu = () => {
-    console.log(menu)
+    
     if (!menu) {
       setMenu(true)
     } else {
@@ -92,12 +94,17 @@ function App() {
                   Historial de ordenes
                 </div>
               </Link>
-              <Link to='#'>
+              <Link to='/profile'>
                 <div className='menuOptions' onClick={handlerMenu}>
                   Perfil
                 </div>
               </Link>
             </div>
+            {userInfo && userInfo.isAdmin && (
+
+              <Link to='#admin'>Admin <i className='fa fa-caret-down'></i></Link>            
+
+            )}
         </div>
     </header>
     <main>
@@ -111,6 +118,7 @@ function App() {
       <Route path='/order/paypal/:id' component={OrderScreen}></Route>
       <Route path='/order/mercadopago/:id/:status?' component={OrderScreenMP}></Route>
       <Route path='/orderhistory' component={OrderHistoryScreen}></Route>
+      <PrivateRoute path='/profile' component={ProfileScreen}></PrivateRoute>
       <Route path='/' component={HomeScreen} exact></Route>
     </main>
     <footer className='row center'>
