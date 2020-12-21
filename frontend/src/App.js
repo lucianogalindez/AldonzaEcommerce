@@ -1,8 +1,4 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {BrowserRouter, Link, Route} from 'react-router-dom'
-import { emptyCart, emptyShippingAddress } from './Actions/cartActions';
-import { signout } from './Actions/userActions';
+import {BrowserRouter, Route} from 'react-router-dom'
 import CartScreen from './Screens/CartScreen';
 import HomeScreen from './Screens/HomeScreen'
 import OrderHistoryScreen from './Screens/OrderHistoryScreen';
@@ -16,97 +12,18 @@ import SigninScreen from './Screens/SigninScreen';
 import OrderScreenMP from './Screens/OrderScreenMP'
 import ProfileScreen from './Screens/ProfileScreen';
 import PrivateRoute from './Components/PrivateRoute';
+import HeaderComponent from './Components/HeaderComponent';
 
 function App() {
-
-  const [menu, setMenu] = useState(false)
-
-  const cart = useSelector(state => state.cart)
-  const { cartItems } = cart;
-
-  const headerBG = useSelector(state => state.headerBG)
-  const { headerBg } = headerBG
-
-  const userSignin = useSelector(state => state.userSignin)
-  const { userInfo } = userSignin;
-
-  const dispatch = useDispatch()
-
-  const signoutHandler = () => {
-      dispatch(signout())
-      dispatch(emptyCart())
-      dispatch(emptyShippingAddress())
-  }
-
-  const handlerMenu = () => {
-    
-    if (!menu) {
-      setMenu(true)
-    } else {
-      setMenu(false)
-    }
-  }
-
-  useEffect (() => {
-    if(!userInfo) {
-      setMenu(false)
-    }
-  }, [userInfo, dispatch])
 
   return (
     <BrowserRouter>
     <div className="grid-container">
-    <header className={ headerBg ? 'row header' : 'row headerNoBg'}>
-        <div className='brand'>
-            <Link to='/'>
-                Aldonza
-            </Link>
-        </div>
-        <div className='info'>
-            <Link to="/cart">Carrito
-            {cartItems.length > 0
-             && (
-                <span className='badge'>{cartItems.length}</span>
-             )
-            }
-            </Link>
-            <Link to="/signin">
-              {
-                userInfo ? (
-                  <Link to ='#' onClick={handlerMenu}>
-                    {(userInfo.name).split(' ')[0]} <i className='fa fa-caret-down'></i>
-                  </Link>
-                )
-                :
-                (
-                  <Link to="/signin">Ingresar</Link>
-                )
-              }
-            </Link>
-            <div className={menu ? 'Menu' : 'hiddenMenu'}>
-              <Link to='/' onClick={signoutHandler}>
-                <div className='menuOptions'>
-                  Salir
-                </div>
-              </Link>
-              <Link to='/orderhistory' onClick={handlerMenu}>
-                <div className='menuOptions'>
-                  Historial de ordenes
-                </div>
-              </Link>
-              <Link to='/profile'>
-                <div className='menuOptions' onClick={handlerMenu}>
-                  Perfil
-                </div>
-              </Link>
-            </div>
-            {userInfo && userInfo.isAdmin && (
-
-              <Link to='#admin'>Admin <i className='fa fa-caret-down'></i></Link>            
-
-            )}
-        </div>
+    
+    <header>
+      <HeaderComponent/>
     </header>
+
     <main>
       <Route path='/product/:id' component={ProductScreen}></Route>
       <Route path='/cart/:id?' component={CartScreen}></Route>
