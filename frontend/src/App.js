@@ -12,7 +12,10 @@ import SigninScreen from './Screens/SigninScreen';
 import OrderScreenMP from './Screens/OrderScreenMP'
 import ProfileScreen from './Screens/ProfileScreen';
 import PrivateRoute from './Components/PrivateRoute';
+import AdminRoute from './Components/AdminRoute';
 import HeaderComponent from './Components/HeaderComponent';
+import ProductListScreen from './Screens/ProductListScreen';
+import ProductEditScreen from './Screens/ProductEditScreen';
 
 function App() {
 
@@ -25,7 +28,8 @@ function App() {
     </header>
 
     <main>
-      <Route path='/product/:id' component={ProductScreen}></Route>
+      <Route path='/product/:id' component={ProductScreen} exact></Route>
+      <Route path='/product/:id/edit' component={ProductEditScreen} exact></Route>
       <Route path='/cart/:id?' component={CartScreen}></Route>
       <Route path='/signin' component={SigninScreen}></Route>
       <Route path='/register' component={RegisterScreen}></Route>
@@ -36,6 +40,7 @@ function App() {
       <Route path='/order/mercadopago/:id/:status?' component={OrderScreenMP}></Route>
       <Route path='/orderhistory' component={OrderHistoryScreen}></Route>
       <PrivateRoute path='/profile' component={ProfileScreen}></PrivateRoute>
+      <AdminRoute path='/productlist' component={ProductListScreen}></AdminRoute>
       <Route path='/' component={HomeScreen} exact></Route>
     </main>
     <footer className='row center'>

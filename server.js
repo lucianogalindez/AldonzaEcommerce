@@ -8,6 +8,7 @@ import orderRouter from './backend/routers/orderRouter.js';
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import path from 'path'
+import uploadRouter from './backend/routers/uploadRouter.js';
 
 const __dirname = path.resolve();
 
@@ -87,6 +88,8 @@ app.get('/order/mercadopago/:id/:status?', (req,res) => {
 
 // DIRECCIONES API 
 
+app.use('/api/uploads', uploadRouter)
+
 app.use('/api/users', userRouter);
 
 app.use('/api/products', productRouter);
@@ -94,6 +97,8 @@ app.use('/api/products', productRouter);
 app.use('/api/mercadopago', mercadolibreRouter)
 
 app.use('/api/orders', orderRouter)
+
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 app.use((err, req, res, next) => {
     res.status(500).send({

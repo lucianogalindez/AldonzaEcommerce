@@ -223,6 +223,8 @@ img.small {
 
 img.medium {
   max-width: 29rem;
+  max-height: 35rem;
+  object-fit: cover;
   width: 100%;
 }
 

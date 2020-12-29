@@ -8,7 +8,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node --experimental-modules server.js",
+    "start": "nodemon --watch server.js --exec node --experimental-modules server.js",
     "heroku-postbuild": "cd frontend && npm install --legacy-peer-deps && npm run build"
   },
   "author": "Luciano Galindez",
@@ -23,6 +23,7 @@
     "jsonwebtoken": "^8.5.1",
     "mercadopago": "^1.5.2",
     "mongoose": "^5.11.4",
+    "multer": "^1.4.2",
     "path": "^0.12.7"
   },
   "devDependencies": {

@@ -106,11 +106,11 @@ export default function HeaderComponent() {
 
             <div className={menuAdmin ? 'Menu' : 'hiddenMenu'}>
               <Link to='/detalles'>
-                <div className='menuOptions'>
+                <div className='menuOptions' onClick={handlerMenuAdmin}>
                   Detalles
                 </div>
               </Link>
-              <Link to='/products' onClick={handlerMenuAdmin}>
+              <Link to='/productlist' onClick={handlerMenuAdmin}>
                 <div className='menuOptions'>
                   Productos
                 </div>
