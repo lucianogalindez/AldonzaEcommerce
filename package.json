@@ -8,7 +8,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch server.js --exec node --experimental-modules server.js",
+    "start": "node --experimental-modules server.js",
     "heroku-postbuild": "cd frontend && npm install --legacy-peer-deps && npm run build"
   },
   "author": "Luciano Galindez",
