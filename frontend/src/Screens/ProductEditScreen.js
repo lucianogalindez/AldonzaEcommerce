@@ -141,7 +141,7 @@ export default function ProductEditScreen(props) {
                         <input 
                         type='file' 
                         id='imageFile'
-                        placeholder='Choose Image'
+                        label='Choose Image'
                         onChange={uploadFileHandler}
                         ></input>
                         {loadingUpload && <LoadingBox />}
