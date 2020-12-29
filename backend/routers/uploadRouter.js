@@ -22,7 +22,7 @@ const upload = multer({storage})
 uploadRouter.post('/', isAuth, upload.single('image'), (req, res) => {
     console.log(path_file)
     console.log('hola')
-    res.send(`/images/${req.file.filename}`)
+    res.send(path_file)
 }) //esperamos un solo archivo que se llama 'image'
 
 export default uploadRouter;
