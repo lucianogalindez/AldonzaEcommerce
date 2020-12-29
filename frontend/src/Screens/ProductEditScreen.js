@@ -5,7 +5,7 @@ import { detailsProducts, updatedProduct } from '../Actions/productActions';
 import LoadingBox from '../Components/LoadingBox';
 import MessageBox from '../Components/MessageBox';
 import { PRODUCT_UPDATE_RESET } from '../Constants/productConstants';
-import axios from '../axios'
+import axios from '../axios';
 
 export default function ProductEditScreen(props) {
 

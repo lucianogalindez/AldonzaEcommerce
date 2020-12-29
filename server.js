@@ -19,7 +19,11 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({extended: true})) //estas dos lineas son importantes para que las peticiones post se hagan en el formato correcto
 
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 app.use(express.static(path.join(__dirname, 'frontend/build')))
+
+console.log(path.join(__dirname, '/uploads'))
+
 
 mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/aldonza', {
     useNewUrlParser: true, 
@@ -97,8 +101,6 @@ app.use('/api/products', productRouter);
 app.use('/api/mercadopago', mercadolibreRouter)
 
 app.use('/api/orders', orderRouter)
-
-app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 app.use((err, req, res, next) => {
     res.status(500).send({
