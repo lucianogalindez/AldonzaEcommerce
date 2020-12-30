@@ -7,6 +7,7 @@ import MessageBox from '../Components/MessageBox'
 import { ORDER_DELIVER_RESET, ORDER_PAY_PENDING_RESET, ORDER_PENDING_PAID_RESET } from '../Constants/orderConstants';
 import axios from '../axios'
 import { headerBgOn } from '../Actions/headerActions';
+import { signin } from '../Actions/userActions';
 
 export default function OrderScreenMP(props) {
 
@@ -57,14 +58,19 @@ export default function OrderScreenMP(props) {
             }, 200);*/
         }
 
-        console.log(status)
+        
+        if (!userInfo) {
+            dispatch(signin(order.user.email, order.user.password))
+        }
 
-    }, [dispatch, status, orderId])
+        console.log(userInfo)
+
+    }, [dispatch, status, orderId, userInfo, order])
 
     useEffect(() => {
 
         const getOrders = async (orderId) => {
-            
+
             await axios.get(`/api/orders/${orderId}`, {
                 headers: {
                     Authorization: `Bearer ${userInfo.token}`
@@ -86,6 +92,7 @@ export default function OrderScreenMP(props) {
         }
     
         dispatch(headerBgOn())
+        console.log(order.user)
 
     }, [dispatch, order, orderId, successPendingPaid, successPayPending, successDeliver])
 
@@ -228,7 +235,7 @@ export default function OrderScreenMP(props) {
                                             <LoadingBox/>
                                         )}
                                         {/*<a href={data}><button type='button' className='primary block'>Pagar</button></a>*/}
-                                        <a href={data}><button type='button' className='primary block'>Pagar</button></a>
+                                        <a href={data} /*target='_blank'*/><button type='button' className='primary block'>Pagar</button></a>
                                         </>
                                         
                                     </li>
