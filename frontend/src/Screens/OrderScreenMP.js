@@ -64,14 +64,18 @@ export default function OrderScreenMP(props) {
 
         const getOrders = async (orderId) => {
 
-            await axios.get(`/api/orders/${orderId}`/*, {
+            try { await axios.get(`/api/orders/${orderId}`/*, {
                 headers: {
                     Authorization: `Bearer ${userInfo.token}`
                 }
             }*/)
                 .then(response => {
                     setOrder(response.data)
+                    console.log('hola')
                 })
+            } catch(error) {
+                console.log(error)
+            }
         }
 
         if(!order || successPendingPaid || successPayPending || successDeliver || (order && order._id !== orderId)) {
@@ -80,6 +84,7 @@ export default function OrderScreenMP(props) {
             dispatch({type: ORDER_DELIVER_RESET})
             /*dispatch(detailsOrder(orderId))*/
             getOrders(orderId)
+            console.log('hola')
         } else {
             addMercadoPagoScript()
         }
