@@ -47,9 +47,20 @@ export default function OrderScreenMP(props) {
         window.open(document.getElementById('mp').appendChild(script)); //lo llama al final del html*/
     }
 
+    
     useEffect(() => {
-        
+        if (status === 'pending') {
+            dispatch(pendingOrder(orderId))
+            /*setTimeout(() => {
+                dispatch(detailsOrder(orderId))
+            }, 200);*/
+        }
 
+        console.log(status)
+
+    }, [dispatch, status, orderId])
+
+    useEffect(() => {
         if(!order || successPendingPaid || successPayPending || successDeliver || (order && order._id !== orderId)) {
             dispatch({type: ORDER_PENDING_PAID_RESET})
             dispatch({type: ORDER_PAY_PENDING_RESET})
@@ -63,17 +74,6 @@ export default function OrderScreenMP(props) {
 
     }, [dispatch, order, orderId, successPendingPaid, successPayPending, successDeliver])
 
-    useEffect(() => {
-        if (status === 'pending') {
-            dispatch(pendingOrder(orderId))
-            /*setTimeout(() => {
-                dispatch(detailsOrder(orderId))
-            }, 200);*/
-        }
-
-        console.log(status)
-
-    }, [dispatch, status, orderId])
 
     const payHandler = () => {
         dispatch(paidPendingOrder(order._id))
@@ -90,7 +90,7 @@ export default function OrderScreenMP(props) {
     ? (<MessageBox variant='danger'>{error}</MessageBox>)
     : (
         <div style={{padding: '1rem'}}>
-            {/*<div>Order {order._id}</div>*/}
+            <div>Order {order._id}</div>
             <div className='row top'>
                 <div className='col-2'>
                     <ul>
