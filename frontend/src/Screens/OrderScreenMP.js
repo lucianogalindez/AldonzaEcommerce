@@ -72,7 +72,7 @@ export default function OrderScreenMP(props) {
                 .then(response => {
                     setOrder(response.data)
                     if (!userInfo) {
-                        dispatch(signin(response.data.user.name, response.data.user.password))
+                        dispatch(signin(response.data.user.email, response.data.user.password))
                         console.log('hola')
                     }
                 })
