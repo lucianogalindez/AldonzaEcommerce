@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { deliverOrder, detailsOrder, paidPendingOrder, /*payOrder,*/ pendingOrder } from '../Actions/orderActions';
+import { deliverOrder, /*detailsOrder,*/ paidPendingOrder, /*payOrder,*/ pendingOrder } from '../Actions/orderActions';
 import LoadingBox from "../Components/LoadingBox";
 import MessageBox from '../Components/MessageBox'
 import { ORDER_DELIVER_RESET, ORDER_PAY_PENDING_RESET, ORDER_PENDING_PAID_RESET } from '../Constants/orderConstants';
@@ -21,7 +21,7 @@ export default function OrderScreenMP(props) {
 
     const dispatch = useDispatch()
     const orderDetails = useSelector(state => state.orderDetails)
-    const {/*order,*/ loading, error} = orderDetails
+    const {/*order, loading,*/ error} = orderDetails
 
     const userSignin = useSelector(state => state.userSignin)
     const {userInfo} = userSignin
@@ -88,7 +88,6 @@ export default function OrderScreenMP(props) {
             dispatch({type: ORDER_DELIVER_RESET})
             /*dispatch(detailsOrder(orderId))*/
             getOrders(orderId)
-            console.log('hola')
         } else {
             addMercadoPagoScript()
         }
