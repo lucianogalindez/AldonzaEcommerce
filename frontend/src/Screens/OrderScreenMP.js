@@ -238,7 +238,7 @@ export default function OrderScreenMP(props) {
                                             <LoadingBox/>
                                         )}
                                         {/*<a href={data}><button type='button' className='primary block'>Pagar</button></a>*/}
-                                        <a href={data} target='_blank'><button type='button' className='primary block'>Pagar</button></a>
+                                        <a href={data}><button type='button' className='primary block'>Pagar</button></a>
                                         </>
                                         
                                     </li>
