@@ -16,6 +16,7 @@ import AdminRoute from './Components/AdminRoute';
 import HeaderComponent from './Components/HeaderComponent';
 import ProductListScreen from './Screens/ProductListScreen';
 import ProductEditScreen from './Screens/ProductEditScreen';
+import OrderListScreen from './Screens/OrderListScreen';
 
 function App() {
 
@@ -41,6 +42,7 @@ function App() {
       <Route path='/orderhistory' component={OrderHistoryScreen}></Route>
       <PrivateRoute path='/profile' component={ProfileScreen}></PrivateRoute>
       <AdminRoute path='/productlist' component={ProductListScreen}></AdminRoute>
+      <AdminRoute path='/orderlist' component={OrderListScreen}></AdminRoute>
       <Route path='/' component={HomeScreen} exact></Route>
     </main>
     <footer className='row center'>

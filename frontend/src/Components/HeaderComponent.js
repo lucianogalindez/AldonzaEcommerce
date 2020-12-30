@@ -115,7 +115,7 @@ export default function HeaderComponent() {
                   Productos
                 </div>
               </Link>
-              <Link to='/orders'>
+              <Link to='/orderlist'>
                 <div className='menuOptions' onClick={handlerMenuAdmin}>
                   Ordenes
                 </div>

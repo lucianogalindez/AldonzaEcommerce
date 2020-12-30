@@ -100,8 +100,6 @@ app.use('/api/orders', orderRouter)
 
 app.use('/images', express.static(path.join(__dirname, '/frontend/public/images')))
 
-console.log(path.join(__dirname, '/frontend/public/images'))
-
 app.use((err, req, res, next) => {
     res.status(500).send({
         message: err.message

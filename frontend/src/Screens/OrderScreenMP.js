@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { detailsOrder, /*payOrder,*/ pendingOrder } from '../Actions/orderActions';
+import { deliverOrder, detailsOrder, paidPendingOrder, /*payOrder,*/ pendingOrder } from '../Actions/orderActions';
 import LoadingBox from "../Components/LoadingBox";
 import MessageBox from '../Components/MessageBox'
-import { ORDER_PAY_RESET } from '../Constants/orderConstants';
+import { ORDER_DELIVER_RESET, ORDER_PAY_PENDING_RESET, ORDER_PENDING_PAID_RESET } from '../Constants/orderConstants';
 import axios from '../axios'
 import { headerBgOn } from '../Actions/headerActions';
 
@@ -20,13 +20,20 @@ export default function OrderScreenMP(props) {
     const orderDetails = useSelector(state => state.orderDetails)
     const {order, loading, error} = orderDetails
 
-    /*Si la orden se ha pagado*/
-    const orderPay = useSelector(state => state.orderPay)
-    const {loading: loadingPay, error: errorPay/*, success: successPay*/} = orderPay
+    const userSignin = useSelector(state => state.userSignin)
+    const {userInfo} = userSignin
 
     /*Si la orden se encuentra con pago pendiente*/
     const orderPayPending = useSelector(state => state.orderPayPending)
-    const {loading: loadingPayPending, error: errorPayPending} = orderPayPending
+    const {loading: loadingPayPending, error: errorPayPending, success: successPayPending} = orderPayPending
+
+    const pendingPaid = useSelector(state => state.pendingPaid)
+    const {loading: loadingPendingPaid, error: errorPendingPaid, success: successPendingPaid} = pendingPaid
+    //cuando el admin recibe el pago y lo notifica
+
+    const orderDeliver = useSelector(state => state.orderDeliver)
+    const {loading: loadingDeliver, error: errorDeliver, success: successDeliver} = orderDeliver
+
 
     const addMercadoPagoScript = async () => {
         await axios.post('/api/mercadopago', {name: 'Productos Aldonza', price: order.totalPrice, qty: 1, orderId: orderId})
@@ -43,8 +50,10 @@ export default function OrderScreenMP(props) {
     useEffect(() => {
         
 
-        if(!order || (order && order._id !== orderId)) {
-            dispatch({type: ORDER_PAY_RESET})
+        if(!order || successPendingPaid || successPayPending || successDeliver || (order && order._id !== orderId)) {
+            dispatch({type: ORDER_PENDING_PAID_RESET})
+            dispatch({type: ORDER_PAY_PENDING_RESET})
+            dispatch({type: ORDER_DELIVER_RESET})
             dispatch(detailsOrder(orderId))
         } else {
             addMercadoPagoScript()
@@ -52,19 +61,27 @@ export default function OrderScreenMP(props) {
 
         dispatch(headerBgOn())
 
-    }, [dispatch, order, orderId])
+    }, [dispatch, order, orderId, successPendingPaid, successPayPending, successDeliver])
 
     useEffect(() => {
         if (status === 'pending') {
             dispatch(pendingOrder(orderId))
-            setTimeout(() => {
+            /*setTimeout(() => {
                 dispatch(detailsOrder(orderId))
-            }, 200);
+            }, 200);*/
         }
 
         console.log(status)
 
     }, [dispatch, status, orderId])
+
+    const payHandler = () => {
+        dispatch(paidPendingOrder(order._id))
+    }
+
+    const deliverHandler = () => {
+        dispatch(deliverOrder(order._id))
+    }
 
     
     return loading 
@@ -171,20 +188,28 @@ export default function OrderScreenMP(props) {
                                 !order.isPaidPending && (
                                     <li>
                                         <>
-                                        {errorPay && (
+                                        {errorPendingPaid && (
                                             <MessageBox variant='danger'>
-                                                {errorPay}
+                                                {errorPendingPaid}
                                             </MessageBox>
                                         )}
                                         {errorPayPending && (
                                             <MessageBox variant='danger'>
-                                                {errorPay}
+                                                {errorPayPending}
                                             </MessageBox>
                                         )}
-                                        {loadingPay && (
+                                        {errorDeliver && (
+                                            <MessageBox variant='danger'>
+                                                {errorDeliver}
+                                            </MessageBox>
+                                        )}
+                                        {loadingPendingPaid && (
                                             <LoadingBox/>
                                         )}
                                         {loadingPayPending && (
+                                            <LoadingBox/>
+                                        )}
+                                        {loadingDeliver && (
                                             <LoadingBox/>
                                         )}
                                         {/*<a href={data}><button type='button' className='primary block'>Pagar</button></a>*/}
@@ -194,6 +219,20 @@ export default function OrderScreenMP(props) {
                                     </li>
                                 )
                             }
+                            {userInfo.isAdmin && order.isPaidPending && !order.isPaid && (
+                                <li>
+                                    <button type='button' onClick={payHandler} className='primary block'>
+                                        Order Was Paid
+                                    </button>
+                                </li>
+                            )}
+                            {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                                <li>
+                                    <button type='button' onClick={deliverHandler} className='primary block'>
+                                        Deliver Order
+                                    </button>
+                                </li>
+                            )}
                         </ul>
                     </div>
                 </div>
