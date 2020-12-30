@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
@@ -7,7 +8,7 @@ import MessageBox from '../Components/MessageBox'
 import { ORDER_DELIVER_RESET, ORDER_PAY_PENDING_RESET, ORDER_PENDING_PAID_RESET } from '../Constants/orderConstants';
 import axios from '../axios'
 import { headerBgOn } from '../Actions/headerActions';
-import { signin } from '../Actions/userActions';
+import { reconect } from '../Actions/userActions';
 
 export default function OrderScreenMP(props) {
 
@@ -58,7 +59,7 @@ export default function OrderScreenMP(props) {
             }, 200);*/
         }
 
-    }, [dispatch, status, orderId])
+    }, [dispatch, status, orderId, userInfo])
 
     useEffect(() => {
 
@@ -72,7 +73,7 @@ export default function OrderScreenMP(props) {
                 .then(response => {
                     setOrder(response.data)
                     if (!userInfo) {
-                        dispatch(signin(response.data.user.email, response.data.user.password))
+                        dispatch(reconect(response.data.user.email, response.data.user.password))
                         console.log('hola')
                     }
                 })

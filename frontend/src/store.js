@@ -5,7 +5,7 @@ import { cartReducer } from './Reducers/cartReducers'
 import { headerReducer } from './Reducers/headerReducers'
 import { orderCreateReducer, orderDeleteReducer, orderDeliverReducer, orderDetailsReducer, orderListReducer, orderMineReducer, orderPayPendingReducer, orderPayReducer, pendingPaidReducer } from './Reducers/orderReducers'
 import { productCreateReducer, productDeleteReducer, productDetailsReducer, productListReducer, productUpdateReducer } from './Reducers/productReducers'
-import { userDetailsReducer, userRegisterReducer, userSigninReducer, userUpdateProfileReducer } from './Reducers/userReducers'
+import { userDetailsReducer, userReconectReducer, userRegisterReducer, userSigninReducer, userUpdateProfileReducer } from './Reducers/userReducers'
 
 const initialState = {
     cart: {
@@ -45,6 +45,7 @@ const reducer = combineReducers({
     orderDelete: orderDeleteReducer,
     orderDeliver: orderDeliverReducer,
     pendingPaid: pendingPaidReducer,
+    userReconect: userReconectReducer //hago esto xq algunas veces se olvida user Info al redireccionar a la pagina
 })
 
 //const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose

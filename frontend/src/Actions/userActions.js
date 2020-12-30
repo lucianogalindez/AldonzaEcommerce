@@ -1,5 +1,5 @@
 import axios from '../axios'
-import { USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT, USER_DETAILS_REQUEST, USER_DETAILS_FAIL, USER_DETAILS_SUCCESS, USER_UPDATE_PROFILE_FAIL, USER_UPDATE_PROFILE_REQUEST, USER_UPDATE_PROFILE_SUCCESS } from '../Constants/userConstants'
+import { USER_REGISTER_FAIL, USER_REGISTER_REQUEST, USER_REGISTER_SUCCESS, USER_SIGNIN_FAIL, USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNOUT, USER_DETAILS_REQUEST, USER_DETAILS_FAIL, USER_DETAILS_SUCCESS, USER_UPDATE_PROFILE_FAIL, USER_UPDATE_PROFILE_REQUEST, USER_UPDATE_PROFILE_SUCCESS, USER_RECONECT_REQUEST, USER_RECONECT_SUCCESS, USER_RECONECT_FAIL } from '../Constants/userConstants'
 
 export const register = (name, email, password) => async(dispatch) => {
     dispatch({
@@ -48,6 +48,31 @@ export const signin = (email, password) => async(dispatch) => {
     } catch (error) {
         dispatch({
             type: USER_SIGNIN_FAIL,
+            payload:
+            error.response && error.response.data.message
+              ? error.response.data.message
+              : error.message,
+        })
+    }
+}
+
+export const reconect = (email, password) => async(dispatch) => {
+    dispatch({
+        type: USER_RECONECT_REQUEST,
+        payload: {email, password}
+    })
+    try {
+        await axios.post('/api/users/reconect', {email, password})
+            .then(response => {
+                dispatch({
+                    type: USER_RECONECT_SUCCESS,
+                    payload: response.data,
+                })
+                localStorage.setItem('userInfo', JSON.stringify(response.data));
+            })
+    } catch (error) {
+        dispatch({
+            type: USER_RECONECT_FAIL,
             payload:
             error.response && error.response.data.message
               ? error.response.data.message
