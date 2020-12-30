@@ -244,7 +244,7 @@ export default function OrderScreenMP(props) {
                                     </li>
                                 )
                             }
-                            {userInfo.isAdmin && order.isPaidPending && !order.isPaid && (
+                            {/*{userInfo.isAdmin && order.isPaidPending && !order.isPaid && (
                                 <li>
                                     <button type='button' onClick={payHandler} className='primary block'>
                                         Order Was Paid
@@ -257,7 +257,7 @@ export default function OrderScreenMP(props) {
                                         Deliver Order
                                     </button>
                                 </li>
-                            )}
+                            )}*/}
                         </ul>
                     </div>
                 </div>
