@@ -90,7 +90,7 @@ export default function OrderScreenMP(props) {
     ? (<MessageBox variant='danger'>{error}</MessageBox>)
     : (
         <div style={{padding: '1rem'}}>
-            <div>Order {order._id}</div>
+            {/*<div>Order {order._id}</div>*/}
             <div className='row top'>
                 <div className='col-2'>
                     <ul>
