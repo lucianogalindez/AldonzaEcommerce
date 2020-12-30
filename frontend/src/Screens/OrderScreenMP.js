@@ -71,7 +71,10 @@ export default function OrderScreenMP(props) {
             }*/)
                 .then(response => {
                     setOrder(response.data)
-                    console.log(response)
+                    if (!userInfo) {
+                        dispatch(signin(response.data.user.name, response.data.user.password))
+                        console.log('hola')
+                    }
                 })
             } catch(error) {
                 console.log(error)
@@ -87,11 +90,6 @@ export default function OrderScreenMP(props) {
             console.log('hola')
         } else {
             addMercadoPagoScript()
-        }
-
-        
-        if (!userInfo && order) {
-            dispatch(signin(order.user.email, order.user.password))
         }
 
         console.log(userInfo)
