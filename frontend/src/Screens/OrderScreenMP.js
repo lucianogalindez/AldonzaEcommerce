@@ -93,10 +93,7 @@ export default function OrderScreenMP(props) {
             addMercadoPagoScript()
         }
 
-        console.log(userInfo)
-    
         dispatch(headerBgOn())
-        console.log(order.user)
 
     }, [dispatch, order, orderId, successPendingPaid, successPayPending, successDeliver, userInfo])
 
