@@ -15,10 +15,11 @@ export default function OrderScreenMP(props) {
     const status = props.match.params.status;
 
     const [data, setData] = useState('')
+    const [order, setOrder] = useState('')
 
     const dispatch = useDispatch()
     const orderDetails = useSelector(state => state.orderDetails)
-    const {order, loading, error} = orderDetails
+    const {/*order,*/ loading, error} = orderDetails
 
     const userSignin = useSelector(state => state.userSignin)
     const {userInfo} = userSignin
@@ -61,15 +62,29 @@ export default function OrderScreenMP(props) {
     }, [dispatch, status, orderId])
 
     useEffect(() => {
+
+        const getOrders = async (orderId) => {
+            
+            await axios.get(`/api/orders/${orderId}`, {
+                headers: {
+                    Authorization: `Bearer ${userInfo.token}`
+                }
+            })
+                .then(response => {
+                    setOrder(response.data)
+                })
+        }
+
         if(!order || successPendingPaid || successPayPending || successDeliver || (order && order._id !== orderId)) {
             dispatch({type: ORDER_PENDING_PAID_RESET})
             dispatch({type: ORDER_PAY_PENDING_RESET})
             dispatch({type: ORDER_DELIVER_RESET})
-            dispatch(detailsOrder(orderId))
+            /*dispatch(detailsOrder(orderId))*/
+            getOrders(orderId)
         } else {
             addMercadoPagoScript()
         }
-
+    
         dispatch(headerBgOn())
 
     }, [dispatch, order, orderId, successPendingPaid, successPayPending, successDeliver])
@@ -84,7 +99,7 @@ export default function OrderScreenMP(props) {
     }
 
     
-    return loading 
+    return !order 
     ? (<LoadingBox/>)
     : error 
     ? (<MessageBox variant='danger'>{error}</MessageBox>)
