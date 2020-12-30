@@ -58,24 +58,17 @@ export default function OrderScreenMP(props) {
             }, 200);*/
         }
 
-        
-        if (!userInfo) {
-            dispatch(signin(order.user.email, order.user.password))
-        }
-
-        console.log(userInfo)
-
-    }, [dispatch, status, orderId, userInfo, order])
+    }, [dispatch, status, orderId])
 
     useEffect(() => {
 
         const getOrders = async (orderId) => {
 
-            await axios.get(`/api/orders/${orderId}`, {
+            await axios.get(`/api/orders/${orderId}`/*, {
                 headers: {
                     Authorization: `Bearer ${userInfo.token}`
                 }
-            })
+            }*/)
                 .then(response => {
                     setOrder(response.data)
                 })
@@ -90,11 +83,18 @@ export default function OrderScreenMP(props) {
         } else {
             addMercadoPagoScript()
         }
+
+        
+        if (!userInfo) {
+            dispatch(signin(order.user.email, order.user.password))
+        }
+
+        console.log(userInfo)
     
         dispatch(headerBgOn())
         console.log(order.user)
 
-    }, [dispatch, order, orderId, successPendingPaid, successPayPending, successDeliver])
+    }, [dispatch, order, orderId, successPendingPaid, successPayPending, successDeliver, userInfo])
 
 
     const payHandler = () => {
