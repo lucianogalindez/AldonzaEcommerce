@@ -48,8 +48,8 @@ orderRouter.get('/mine', isAuth, expressAsyncHandler(async(req, res) => {
     } 
 }))
 
-orderRouter.get('/:id', isAuth, expressAsyncHandler(async(req, res) => {
-    const order = await Order.findById(req.params.id)
+orderRouter.get('/:id', /*isAuth,*/ expressAsyncHandler(async(req, res) => {
+    const order = await Order.findById(req.params.id).populate('user')
     if (order) {
         res.send(order)
     } else {
