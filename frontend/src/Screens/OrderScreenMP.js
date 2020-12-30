@@ -111,6 +111,8 @@ export default function OrderScreenMP(props) {
 
     
     return !order  
+    ? (<LoadingBox/>) 
+    : !userInfo
     ? (<LoadingBox/>)
     : error 
     ? (<MessageBox variant='danger'>{error}</MessageBox>)
